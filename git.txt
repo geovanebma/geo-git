@@ -1,0 +1,193 @@
+git init - Trata a pasta atual como diretório do git
+
+git status - verifica as condições atuais do git naquele diretório
+
+git add nomedoarquivo.html - adiciona o nomedoarquivo.html no repositório git
+
+git add . - adiciona todos os arquivos daquela pasta no repositório git
+
+git commit -m "Carregamento do primeiro commit" - Faz o carregamento principal para uso
+
+git config - Modifica ou visualiza as configurações do projeto
+
+git config --local - Modifica ou visualiza as configurações do projeto local
+
+git config --global - Modifica ou visualiza as configurações do projeto global(todo pc)
+
+git config --local user.name "Nome do Autor"- Configura o nome do autor
+
+git config --local user.email "E-mail do Autor"- Configura o e-mail do autor
+
+git log - Ver histórico de commits
+
+git log --oneline - Mostra resumidamente o histórico do commit em uma única linha
+
+git log -p - Mostra o histórico de commit e as informações alteradas no arquivo
+
+"Para outros tipos de log, temos no site: https://devhints.io/git-log-format"
+
+No diretório atual, crie um arquivo chamado ".gitignore" - Esse arquivo ignora todos os arquivos que você não quer efetuar commit e nem aparece no git status,
+então, basta salvar o nome dos arquivos dentro dele que ele ignora estes. Se for pasta dentro dele, coloca o nome da pasta mais a barra, pasta/.
+
+Nunca se pode commitar um arquivo ou código que esteja com problema!
+
+git init --bare - Trata a pasta como não pode ter alterações
+
+git remote - Verifica quais servidores temos
+
+git remote add nomeDoServidor urlDoCaminho - Adiciona a configuração remota(servidor) aplicando um nome para ela com a url da pasta que quer tratar ela como servidor
+
+git remote -v - mostra o endereço local daquele servidor
+
+git clone enderecoUrlServidor - Coloca os dados do servidor para a pasta atual (Servidor -> Helena)
+
+git push - envia dados para determinado servidor
+
+git push nomeDoServidor nomeDaBranch(master) - envia dados para o servidor e com a branch informada
+
+git remote rename origin local - renomeia de qual servidor você quer que seja trazido os arquivos para aquela pasta
+
+git pull nomeDoServidor nomeDaBranch - Coloca os dados do servidor para a pasta atual (Servidor -> Helena)
+
+//Diferente do git push, git pull pega através do nome do servidor que você pôs, o push trás os dados da url daquele servidor
+
+Github
+
+git remote add origin https://github.com/geovanebma/teste-git.git - adicionar endereço remoto do git
+
+git pull origin master - Trás as definições dessa pasta
+
+git push -u origin master - significa que sempre que der git push, sera sempre na origin master (não recomendável)
+
+git remote remove nomeDoServidor - remove servidor
+
+Branch:
+
+git branch - mostra as branchs que temos
+
+git branch nomeDaBranch - Cria uma nova branch
+
+git checkout nomeDaBranch - muda para a branch que você quer trabalhar
+
+git checkout -b nomeDaBranch - Cria a branch e já muda para essa branch
+
+git merge nomeDaBranch - Tras as alterações de outra branch para a branch atual (para sair dos avisos coloque o comando ":x")
+
+Uma forma mais adequada de alterar e subir arquivos para outra branch sem causar outros defeitos e ramificações grandes, seria:
+
+git log --graph - Para ver as linhas de desenvolvimento git
+
+Feito commit na branch2, é hora de voltar para a branch1:
+(git checkout branch1
+git rebase branch2
+git log --graph
+git push local master)
+
+git rebase branch2 - Faz com que realize um merge diretamente na branch que você está, sem criar aquelas ramificações
+
+Se fizer alteração cada um em suas devidas branchs na mesma linha e um deles der merge após commitar ambos, irá mostrar no VSCODE o conflito,
+nesse caso entre no VSCODE e clique em uma das opções, Accept Current Change (Condições/código de seu colega) ou Accept Incoming Change (Suas condições ou código)
+depois, é só dar commit novamente
+Antes de subir nova versão pro branch, é necessário trazer os dados atuais de lá - git pull
+
+Desfazer modificações:
+
+git checkout -- nomeDoArquivo - Desfaz as alterações antes de dar git add
+
+git reset HEAD nomeDoArquivo - volta a não adicionar ao init ele volta o arquivo ao status de modificado
+
+git revert códigoHashing- volta as alterações depois de ter commitado
+
+git stash - se quiser salvar um código para voltar a trabalhar nele depois
+
+git stash list - mostra todos os itens salvos no git stash
+
+git stash apply numeroDoStash - coloca no arquivo a alteração que tinha salvo anteriormente
+
+git stash drop - apaga os dados dentro do stash
+
+git stash pop - coloca no arquivo a ultima alteração que tinha salvo anteriormente e apaga os dados dentro do stash
+
+Se colocar git log --oneline, vemos que tem vários commits que fizemos, e se quiser-mos voltar alguma dessas?
+
+git checkout codigoDoLog - Volta as alterações que estavam naquela linha (As vezes terá que criar uma nova branch antes, pois esse código está fora da linha)
+
+git diff - Mostra o que ainda foi salvo mas não foi adicionado nem commitado
+
+git diff codigoDoLog1.. codigoDoLog27 - Informa que é do commit  codigoDoLog1 até o codigoDoLog27
+
+As vezes queremos criar versões do código, tipo, o mesmo código com o background azul vai ser a versão 1,  o mesmo código com o background vermelho vai ser a versão 2 e assim sucessivamente, para isso:
+
+git tag -a nomeDaVersao -m "Descrição da tag"
+
+git tag - mostra todas as tags atualmente que tem
+
+git push nomeDaBranch nomeDaTag - sobe a versão daquela tag
+
+git pull nomeDaBranch nomeDaTag - busca a versão daquela tag
+
+_______________________________________________________________________________________________________
+
+Avançado - Parte 2
+
+Se você está numa página github associado com outros colegas, na hora de fazer o push as vezes vai pedir para você cadastrar o user.email, outra condição, é
+se continuar dando erro, então, recomendamos dentro do painel de controle, achar o menu Gerenciador de Cradenciais > credenciais do windows
+lá dentro, se encontrar a opção gitgithub, pode remover, assim não é bloqueado o acesso
+
+git rebase -i HEAD~3 - seleciona que quer fazer um merge com os últimos 3 commits de uma vez só (após isso aparecerá uma mensagem, nessa mensagem, onde estiver escrito "pick", troque por "s", menos o primeiro de cima, depois, feito isso coloca um novo nome para esse commit)
+
+Bitbucket é um site alternativo grátis parecido com o github
+Gitlab além disso tudo, gitlab também faz um gerenciamento de tarefas (vários planos de pagamento)
+
+git cherry-pick numeroDoHash-  se houver alguns commits seguidos de outra branch que quer copiar para sua branch, executa esse comando
+
+Vamos supor que deram 5 commits sendo que foi modificado apenas uma linha, a de título várias vezes com nomes diferentes, e depois quer saber qual ponto foi alterado essa descrição:
+
+-Execute o comando git bisect start:
+git bisect start
+
+-Feito isso, vai aparecer uma linha e coloca nele as informações:
+G)
+$ git bisect bad HEAD - Isso porque mostra que foi o commit atual
+
+-Depois disso, coloca a partir de qual commit gostaria de analisar:
+G)
+$ git bisect good numeroDoHash
+
+- Se essa não era o commit anterior que estava buscando, então digite a seguir:
+G)
+$ git bisect bad - Faça isso até encontrar o que voce deseja
+
+- Caso for esse o commit desejado, digite:
+G)
+$ git bisect good
+
+- Depois disso, para finalizar o bisect:
+G)
+$ git bisect reset
+
+git show numeroDoHash - mostra todas alterações feitas daquele hash
+
+git blame nomeDoArquivo - Mostra quem é o responsável por aquele código
+
+git branch -d nomeDaBranch - remove uma branch
+
+git branch -D nomeDaBranch - remove uma branch que esteja atrás de uma linha principal
+
+Conceitos sobre GitFlow:
+De forma aministrartiva, é recomendável ter uma branch para casa empregado, uma para juntar os merges, uma para conter as versões e uma para a produção.
+
+No site oficial do git, mostra alguns sites que tem o git numa melhor visualização, como o git cola, que mostra as branchs e informações em um design melhor
+
+vim nomeDoBash - Comando para criar um arquivo shell script
+é recomendável criar dentro da pasta .git/hooks
+
+começa colocando o seguinte comando:
+#!/bib/sh
+
+Depois escreva o que quer aparecer:
+echo "Você está prestes a commitar."
+:x para sair
+
+depois execute o comando:
+chmod u+x nomeDoBash
